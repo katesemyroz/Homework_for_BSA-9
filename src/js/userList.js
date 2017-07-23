@@ -1,4 +1,6 @@
-var _ = require('lodash');
+import _ from 'lodash';
+import defaultLogo from '../../images/logo.png';
+import defaultAvatar from '../../images/avatar.jpg';
 
 
 //function userList sorts and shows all users by adding them into DOM 
@@ -8,6 +10,9 @@ function userList(users){
     this.showList = () => {
         sortedUsers.forEach((user) => {
             const div = document.createElement("div");
+            const img = document.createElement('img');
+            img.src = defaultAvatar;
+            div.appendChild(img);
             div.append(user.name + ' ' + user.age);
             container.appendChild(div);
         });

@@ -1,5 +1,4 @@
-var webpack = require("webpack");
-var path = require('path');
+const webpack = require("webpack");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
@@ -13,8 +12,14 @@ module.exports = {
 	module:{
 		rules: [
 			{
-                test:   /\.css$/,
-                use: ["style-loader", "css-loader", "postcss-loader"]
+                test: /\.js$/,
+                enforce: "pre", 
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "jshint-loader"
+                    }
+                ]
             },
 			{
 				test: /\.js$/,
@@ -27,37 +32,26 @@ module.exports = {
 				}
 			},
 			{
-    			test: /\.(jpe?g|png|gif|svg)$/i,
-    			use: ['img-loader']
-    		},
-    		{
-                test: /\.js$/,
-                enforce: "pre", 
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "jshint-loader"
-                    }
-                ]
-            }
-		],
-		loaders: [
+                test:   /\.css$/,
+                use: ["style-loader", "css-loader", "postcss-loader"]
+            },
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['es2015']
-                }
-            }
-        ]
+			  test: /\.(jpe?g|png|gif|svg)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: { limit: 10000 }
+					},
+					'image-webpack-loader'
+				]
+			}
+		]
 	},
 	//webpack.optimize.UglifyJsPlugin - включает мнификацию
 	plugins: [
 		new UglifyJSPlugin({
 			beautify: false,
-			comments: true,
-			extractComments: true
+			comments: false
 		}),
 		new webpack.LoaderOptionsPlugin({
 			minimize: true

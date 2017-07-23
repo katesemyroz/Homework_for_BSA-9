@@ -1,6 +1,5 @@
 import userList from './userList.js';
-// import defaultAvatar from '../images/avatar.jpg';
-require('../css/style.css');
+import '../css/style.css';
 
 
 //here is the list of users
