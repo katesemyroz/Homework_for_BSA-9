@@ -1,5 +1,5 @@
 import userList from './userList.js';
-import '../css/style.css';
+import '../css/style.scss';
 
 
 //here is the list of users

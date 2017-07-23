@@ -23,6 +23,7 @@
     "img-loader": "^2.0.0",
     "jshint-loader": "^0.8.4",
     "lodash": "^4.17.4",
+    "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
